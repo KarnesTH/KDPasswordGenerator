@@ -1,0 +1,6 @@
+-C package
+-s dir
+-t rpm
+-n "kd-password-generator"
+-v 1.0.0
+-p kd-password-generator.rpm
