@@ -18,6 +18,7 @@ from PyQt6.QtWidgets import (
     QMessageBox,
     QDialog,
     QDialogButtonBox,
+    QTextEdit
 )
 
 # variable for the root directory
@@ -106,6 +107,45 @@ class HelpDialog(QDialog):
         self.setLayout(self.layout)
 
 
+class InfoDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+        self.setWindowTitle("KD Password Generator Info")
+
+        button = QDialogButtonBox.StandardButton.Ok
+        self.btn_box = QDialogButtonBox(button)
+        self.btn_box.accepted.connect(self.accept)
+
+        self.header_lbl = QLabel("KD Password Generator")
+        font = self.header_lbl.font()
+        font.setPointSize(14)
+        font.setFamily(FONT_FAMILY)
+        self.header_lbl.setFont(font)
+        self.header_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
+
+        self.desc_field = QTextEdit()
+        self.desc_field.setText(
+            "The KD Password Generator is a simple desktop application to generate a random password between 8 and 20 characters."
+        )
+        self.desc_field.setReadOnly(True)
+
+        self.footer_lbl = QLabel(
+            "Version: 1.0.0 | Developed by Patrick Hähnel")
+        font = self.footer_lbl.font()
+        font.setPointSize(10)
+        font.setFamily(FONT_FAMILY)
+        self.footer_lbl.setFont(font)
+
+        self.main_layout = QVBoxLayout()
+        self.main_layout.addWidget(self.header_lbl)
+        self.main_layout.addWidget(self.desc_field)
+        self.main_layout.addWidget(self.footer_lbl)
+        self.main_layout.addWidget(self.btn_box)
+
+        self.setLayout(self.main_layout)
+
+
 class MessageDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -116,7 +156,7 @@ class MessageDialog(QDialog):
 
         self.message_lbl = QLabel()
         font = self.message_lbl.font()
-        font.setPointSize(10)
+        font.setPointSize(12)
         font.setFamily(FONT_FAMILY)
         self.message_lbl.setFont(font)
 
@@ -208,10 +248,16 @@ class MainWindow(QMainWindow):
         help_action.setStatusTip("&Help")
         help_action.triggered.connect(self.onHelpActionBtnClick)
 
+        # info action button
+        info_action = QAction("About", self)
+        info_action.setStatusTip("&About")
+        info_action.triggered.connect(self.onInfoActionBtnClick)
+
         # menu bar
         menu_bar = self.menuBar()
         help_menu = menu_bar.addMenu("&Help")
         help_menu.addAction(help_action)
+        help_menu.addAction(info_action)
 
         # center the container in the main window
         self.setCentralWidget(self.container)
@@ -254,6 +300,10 @@ class MainWindow(QMainWindow):
     def onHelpActionBtnClick(self):
         """Shows a Dialog with helping text"""
         dlg = HelpDialog(self)
+        dlg.exec()
+
+    def onInfoActionBtnClick(self):
+        dlg = InfoDialog(self)
         dlg.exec()
 
 
