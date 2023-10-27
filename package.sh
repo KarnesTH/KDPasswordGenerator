@@ -7,7 +7,7 @@ mkdir -p package/usr/share/icons/hicolor/scalable/apps
 
 # Copy files
 cp -r dist/kd-password-generator package/opt/kd-password-generator
-cp img/logo.svg package/usr/share/icons/hicolor/scalable/apps/logo.svg
+cp images/icons/logo.svg package/usr/share/icons/hicolor/scalable/apps/logo.svg
 cp kd-password-generator.desktop package/usr/share/applications
 
 # Change permissions
