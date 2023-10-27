@@ -2,6 +2,7 @@ import sys
 import os
 import string
 from random import choice
+from helper import Paths
 
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtGui import QIcon, QAction, QPixmap
@@ -20,9 +21,6 @@ from PyQt6.QtWidgets import (
     QDialogButtonBox,
     QTextEdit
 )
-
-# variable for the root directory
-BASE_DIR = os.path.dirname(__file__)
 
 # global variables
 FONT_FAMILY = "Courier"
@@ -55,7 +53,7 @@ class HelpDialog(QDialog):
         self.header_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.first_step_img = QLabel()
-        img = QPixmap(os.path.join(BASE_DIR, "./img/step_one.png"))
+        img = QPixmap(Paths.image("step_one.png"))
         self.first_step_img.setPixmap(img)
         self.first_step_img.resize(img.width(), img.height())
         self.first_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -67,7 +65,7 @@ class HelpDialog(QDialog):
         self.first_step_lbl.setFont(font)
 
         self.sec_step_img = QLabel()
-        img = QPixmap(os.path.join(BASE_DIR, "./img/step_two.png"))
+        img = QPixmap(Paths.image("step_two.png"))
         self.sec_step_img.setPixmap(img)
         self.sec_step_img.resize(img.width(), img.height())
         self.sec_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -81,7 +79,7 @@ class HelpDialog(QDialog):
         self.sec_step_lbl.setFont(font)
 
         self.third_step_img = QLabel()
-        img = QPixmap(os.path.join(BASE_DIR, "./img/step_three.png"))
+        img = QPixmap(Paths.image("step_three.png"))
         self.third_step_img.setPixmap(img)
         self.third_step_img.resize(img.width(), img.height())
         self.third_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -309,7 +307,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon(os.path.join(BASE_DIR, "./img/logo.svg")))
+    app.setWindowIcon(QIcon(Paths.icon("logo.svg")))
     app.setStyle("Fusion")
     window = MainWindow()
     window.show()
