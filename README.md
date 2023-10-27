@@ -76,12 +76,12 @@ python3 main.py
 
 1. Select a number in the dropdown menu for your password length
 
-![first step](./images/step_one.png)
+![first step](./img/step_one.png)
 
 2. Click the "Generate" button to generate your password
 
-![second step](./images/step_two.png)
+![second step](./img/step_two.png)
 
 3. Click the "Copy" button to copy your generated password to your clipbord
 
-![third step](,/../images/step_three.png)
+![third step](./img/step_three.png)

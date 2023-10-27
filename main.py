@@ -55,7 +55,7 @@ class HelpDialog(QDialog):
         self.header_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.first_step_img = QLabel()
-        img = QPixmap(os.path.join(BASE_DIR, "./images/step_one.png"))
+        img = QPixmap(os.path.join(BASE_DIR, "./img/step_one.png"))
         self.first_step_img.setPixmap(img)
         self.first_step_img.resize(img.width(), img.height())
         self.first_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -67,7 +67,7 @@ class HelpDialog(QDialog):
         self.first_step_lbl.setFont(font)
 
         self.sec_step_img = QLabel()
-        img = QPixmap(os.path.join(BASE_DIR, "./images/step_two.png"))
+        img = QPixmap(os.path.join(BASE_DIR, "./img/step_two.png"))
         self.sec_step_img.setPixmap(img)
         self.sec_step_img.resize(img.width(), img.height())
         self.sec_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -81,7 +81,7 @@ class HelpDialog(QDialog):
         self.sec_step_lbl.setFont(font)
 
         self.third_step_img = QLabel()
-        img = QPixmap(os.path.join(BASE_DIR, "./images/step_three.png"))
+        img = QPixmap(os.path.join(BASE_DIR, "./img/step_three.png"))
         self.third_step_img.setPixmap(img)
         self.third_step_img.resize(img.width(), img.height())
         self.third_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -309,7 +309,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon(os.path.join(BASE_DIR, "logo.svg")))
+    app.setWindowIcon(QIcon(os.path.join(BASE_DIR, "./img/logo.svg")))
     app.setStyle("Fusion")
     window = MainWindow()
     window.show()
