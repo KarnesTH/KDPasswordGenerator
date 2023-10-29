@@ -284,6 +284,12 @@ class MainWindow(QMainWindow):
         """Copy the generated password to the clipboard"""
         QApplication.clipboard().setText(self.output_field.text())
 
+        QMessageBox.information(
+            self,
+            "Successfully copied",
+            "Your password has been successfully copied."
+        )
+
     def exit_program(self):
         """Exit program"""
         btn = QMessageBox.question(
