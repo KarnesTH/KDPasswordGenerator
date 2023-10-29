@@ -30,7 +30,7 @@ try:
     from ctypes import windll
 
     appId = "karnesdevelopment.kdpasswordgenerator.version-1"
-    windll.shell32.SetCurrentProcessExplitAppUserModelId(appId)
+    windll.shell32.SetCurrentProcessExplicitAppUserModelID(appId)
 except ImportError:
     pass
 
