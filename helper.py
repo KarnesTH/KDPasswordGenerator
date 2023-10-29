@@ -4,7 +4,7 @@ import json
 
 class Paths():
     base = os.path.dirname(__file__)
-    images = os.path.join(base, "images")
+    images = os.path.join(base, "data/images")
     icons = os.path.join(images, "icons")
     datas = os.path.join(base, "data")
 
@@ -25,8 +25,7 @@ class Paths():
 class Locations():
     @classmethod
     def getData(cls, locale):
-        basedir = os.path.dirname(__file__)
         data = json.load(
-            open(os.path.join(basedir, "./locale/" + locale + ".json"), "r", encoding="utf-8"))
+            open(Paths.data("./locale/" + locale + ".json"), "r", encoding="utf-8"))
 
         return data
