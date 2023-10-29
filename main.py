@@ -312,7 +312,10 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     curr_location = QLocale()
-    language = Locations.getData(curr_location.name()[:2])
+    if curr_location.name()[:2] == "de" or curr_location.name()[:2] == "en":
+        language = Locations.getData(curr_location.name()[:2])
+    else:
+        language = "en"
     app.setWindowIcon(QIcon(Paths.icon("logo.png")))
     app.setStyle("Fusion")
     window = MainWindow()

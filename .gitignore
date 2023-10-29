@@ -164,3 +164,6 @@ package
 
 # with fpm created package
 *.rpm
+
+# installer
+installer
