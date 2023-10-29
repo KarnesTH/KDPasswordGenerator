@@ -24,8 +24,8 @@ class Paths():
 
 class Locations():
     @classmethod
-    def getData(cls, locale):
+    def getData(cls, language):
         data = json.load(
-            open(Paths.data("./locale/" + locale + ".json"), "r", encoding="utf-8"))
+            open(Paths.data("./locale/" + language + ".json"), "r", encoding="utf-8"))
 
         return data

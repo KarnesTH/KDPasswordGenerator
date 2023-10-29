@@ -17,7 +17,7 @@
   "aboutDialog": {
     "windowTitle": "KD Passwort Generator Information",
     "aboutDialogTitle": "KD Passwort Generator",
-    "aboutDialogText": "Der KD Passwort Generator ist eine simple Anwendung um ein zufälliges Passwort zwischen 8 und 20 Zeichen zu generieren\n\nDiese Anwendung ist eine komplett kostenlose Software.",
+    "aboutDialogText": "Der KD Passwort Generator ist eine simple Anwendung um ein zufälliges Passwort zwischen 8 und 20 Zeichen zu generieren.\n\nDiese Anwendung ist eine komplett kostenlose Software.",
     "aboutDialogFooter": "Entwickelt von Patrick Hähnel"
   },
   "copyDialog": {

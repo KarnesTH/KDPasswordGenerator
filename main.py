@@ -1,12 +1,11 @@
 import sys
-import os
 import string
 from random import choice
-from locale import getlocale
+
 
 from helper import Paths, Locations
 
-from PyQt6.QtCore import QSize, Qt, QTranslator
+from PyQt6.QtCore import QSize, Qt, QLocale
 from PyQt6.QtGui import QIcon, QAction, QPixmap
 from PyQt6.QtWidgets import (
     QMainWindow,
@@ -26,15 +25,8 @@ from PyQt6.QtWidgets import (
 
 # global variables
 FONT_FAMILY = "Courier"
-LOCALE = getlocale()
 
 VERSION = "1.0.0"
-
-defaultLanguage = "en"
-if LOCALE[0][:2] == "de" or LOCALE[0][:2] == "en":
-    language = Locations.getData(LOCALE[0][:2])
-else:
-    language = Locations.getData(defaultLanguage)
 
 # showing icon on the taskbar for windows
 try:
@@ -319,8 +311,10 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    curr_location = QLocale()
+    language = Locations.getData(curr_location.name()[:2])
     app.setWindowIcon(QIcon(Paths.icon("logo.png")))
     app.setStyle("Fusion")
     window = MainWindow()
     window.show()
-    sys.exit(app.exec())
+    app.exec()
