@@ -1,0 +1,35 @@
+{
+  "windowTitle": "KD Passwort Generator",
+  "generateBtn": "Generieren",
+  "copyBtn": "Kopieren",
+  "infoLbl": "Generiere ein zufälliges Passwort",
+  "exitBtn": "Beenden",
+  "helpAction": "Hilfe",
+  "infoAction": "Info",
+  "selectOption": "-- Bitte wähle eine Passwortlänge aus --",
+  "helpDialog": {
+    "helpDialogWindowTitle": "KD Passwort Generator Hilfe",
+    "helpDialogHeader": "So benutze ich den Generator:",
+    "helpDialogFirstStep": "1. Wähle aus dem dropdown deine Passwortlänge",
+    "helpDialogSecStep": "2. Klicke auf \"Generieren\" um dein Paswort zu generieren",
+    "helpDialogThirdStep": "3. Klicke auf \"Kopieren\" un dein Passwort in die\nZwischenablage zu kopieren"
+  },
+  "aboutDialog": {
+    "windowTitle": "KD Passwort Generator Information",
+    "aboutDialogTitle": "KD Passwort Generator",
+    "aboutDialogText": "Der KD Passwort Generator ist eine simple Anwendung um ein zufälliges Passwort zwischen 8 und 20 Zeichen zu generieren\n\nDiese Anwendung ist eine komplett kostenlose Software.",
+    "aboutDialogFooter": "Entwickelt von Patrick Hähnel"
+  },
+  "copyDialog": {
+    "windowTitle": "Erfolgreich Kopiert",
+    "copyDialogText": "Dein Passwort wurde erfolgreich in die Zwischenablage kopiert."
+  },
+  "exitDialog": {
+    "windowTitle": "KD Passwort Generator Beenden",
+    "exitDialogText": "Möchtest du wirklich das Programm beenden?"
+  },
+  "messageDialog": {
+    "windowTitle": "KD Passwort Generator",
+    "messageDialogText": "Bitte wähle eine Nummer aus."
+  }
+}

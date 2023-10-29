@@ -1,0 +1,35 @@
+{
+  "windowTitle": "KD Password Generator",
+  "generateBtn": "Generate",
+  "copyBtn": "Copy",
+  "infoLbl": "Generate a random password",
+  "exitBtn": "Exit",
+  "helpAction": "Help",
+  "infoAction": "About",
+  "selectOption": "-- Select a password length --",
+  "helpDialog": {
+    "helpDialogWindowTitle": "KD Password Generator Help",
+    "helpDialogHeader": "How to use the Generator:",
+    "helpDialogFirstStep": "1. Select a number in the Dropdown.",
+    "helpDialogSecStep": "2. Click the \"Generate\" button to generate the password.",
+    "helpDialogThirdStep": "3. Now click the \"Copy\" button to copy the password\n into your clipboard."
+  },
+  "aboutDialog": {
+    "windowTitle": "KD Password Generator Information",
+    "aboutDialogTitle": "KD Password Generator",
+    "aboutDialogText": "The KD Password Generator is a simple desktop application to generate a random password between 8 and 20 characters.\n\nThis application is completely free software.",
+    "aboutDialogFooter": "Developed by Patrick Hähnel"
+  },
+  "copyDialog": {
+    "windowTitle": "Successfully copied",
+    "copyDialogText": "Your password has been successfully copied."
+  },
+  "exitDialog": {
+    "windowTitle": "KD Password Generator Exit",
+    "exitDialogText": "Do you want to exit the program?"
+  },
+  "messageDialog": {
+    "windowTitle": "KD Password Generator",
+    "messageDialogText": "Please select a number to generate a password."
+  }
+}

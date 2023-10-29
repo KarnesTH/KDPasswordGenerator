@@ -2,9 +2,11 @@ import sys
 import os
 import string
 from random import choice
-from helper import Paths
+from locale import getlocale
 
-from PyQt6.QtCore import QSize, Qt
+from helper import Paths, Locations
+
+from PyQt6.QtCore import QSize, Qt, QTranslator
 from PyQt6.QtGui import QIcon, QAction, QPixmap
 from PyQt6.QtWidgets import (
     QMainWindow,
@@ -24,6 +26,15 @@ from PyQt6.QtWidgets import (
 
 # global variables
 FONT_FAMILY = "Courier"
+LOCALE = getlocale()
+
+VERSION = "1.0.0"
+
+defaultLanguage = "en"
+if LOCALE[0][:2] == "de" or LOCALE[0][:2] == "en":
+    language = Locations.getData(LOCALE[0][:2])
+else:
+    language = Locations.getData(defaultLanguage)
 
 # showing icon on the taskbar for windows
 try:
@@ -39,13 +50,13 @@ class HelpDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setWindowTitle("KD Password Generator Help")
+        self.setWindowTitle(language["helpDialog"]["helpDialogWindowTitle"])
 
         button = QDialogButtonBox.StandardButton.Ok
         self.btn_box = QDialogButtonBox(button)
         self.btn_box.accepted.connect(self.accept)
 
-        self.header_lbl = QLabel("How to use the Generator:")
+        self.header_lbl = QLabel(language["helpDialog"]["helpDialogHeader"])
         font = self.header_lbl.font()
         font.setPointSize(14)
         font.setFamily(FONT_FAMILY)
@@ -58,7 +69,8 @@ class HelpDialog(QDialog):
         self.first_step_img.resize(img.width(), img.height())
         self.first_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.first_step_lbl = QLabel("1. Select a number in the Dropdown.")
+        self.first_step_lbl = QLabel(
+            language["helpDialog"]["helpDialogFirstStep"])
         font = self.first_step_lbl.font()
         font.setPointSize(10)
         font.setFamily(FONT_FAMILY)
@@ -70,9 +82,7 @@ class HelpDialog(QDialog):
         self.sec_step_img.resize(img.width(), img.height())
         self.sec_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.sec_step_lbl = QLabel(
-            "2. Click the \"Generate\" button to generate the password."
-        )
+        self.sec_step_lbl = QLabel(language["helpDialog"]["helpDialogSecStep"])
         font = self.sec_step_lbl.font()
         font.setPointSize(10)
         font.setFamily(FONT_FAMILY)
@@ -85,8 +95,7 @@ class HelpDialog(QDialog):
         self.third_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.third_step_lbl = QLabel(
-            "3. Now click the \"Copy\" button to copy the password\n into your clipboard."
-        )
+            language["helpDialog"]["helpDialogThirdStep"])
         font = self.third_step_lbl.font()
         font.setPointSize(10)
         font.setFamily(FONT_FAMILY)
@@ -109,13 +118,13 @@ class InfoDialog(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setWindowTitle("KD Password Generator Info")
+        self.setWindowTitle(language["aboutDialog"]["windowTitle"])
 
         button = QDialogButtonBox.StandardButton.Ok
         self.btn_box = QDialogButtonBox(button)
         self.btn_box.accepted.connect(self.accept)
 
-        self.header_lbl = QLabel("KD Password Generator")
+        self.header_lbl = QLabel(language["aboutDialog"]["aboutDialogTitle"])
         font = self.header_lbl.font()
         font.setPointSize(14)
         font.setFamily(FONT_FAMILY)
@@ -123,13 +132,11 @@ class InfoDialog(QDialog):
         self.header_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.desc_field = QTextEdit()
-        self.desc_field.setText(
-            "The KD Password Generator is a simple desktop application to generate a random password between 8 and 20 characters.\n\nThis application is completely free software."
-        )
+        self.desc_field.setText(language["aboutDialog"]["aboutDialogText"])
         self.desc_field.setReadOnly(True)
 
         self.footer_lbl = QLabel(
-            "Version: 1.0.0 | Developed by Patrick Hähnel")
+            f"Version: {VERSION} | {language["aboutDialog"]["aboutDialogFooter"]}")
         font = self.footer_lbl.font()
         font.setPointSize(10)
         font.setFamily(FONT_FAMILY)
@@ -170,12 +177,12 @@ class MainWindow(QMainWindow):
         """Initialize the main window"""
         super().__init__()
 
-        self.setWindowTitle("KD Password Generator")
+        self.setWindowTitle(language["windowTitle"])
         self.setFixedSize(QSize(300, 200))
 
         # variables
         self.pass_len_list = [
-            "-- Select a password length --",
+            f"{language["selectOption"]}",
             "8",
             "9",
             "10",
@@ -193,7 +200,7 @@ class MainWindow(QMainWindow):
         self.pass_len = 0
 
         # info label
-        self.info_lbl = QLabel("Generate a random password")
+        self.info_lbl = QLabel(language["infoLbl"])
         font = self.info_lbl.font()
         font.setPointSize(12)
         self.info_lbl.setFont(font)
@@ -205,11 +212,11 @@ class MainWindow(QMainWindow):
         self.dropdown_cb.activated.connect(self.activated)
 
         # generate button to generate the password
-        self.generate_btn = QPushButton("Generate")
+        self.generate_btn = QPushButton(language["generateBtn"])
         self.generate_btn.clicked.connect(self.generate_password)
 
         # copy button to copy the generated password to the clipboard
-        self.copy_btn = QPushButton("Copy")
+        self.copy_btn = QPushButton(language["copyBtn"])
         self.copy_btn.clicked.connect(self.copy_password)
 
         # output field to showing the generated password
@@ -221,7 +228,7 @@ class MainWindow(QMainWindow):
         self.output_field.setReadOnly(True)
 
         # exit button to exit the program
-        self.exit_btn = QPushButton("Exit")
+        self.exit_btn = QPushButton(language["exitBtn"])
         self.exit_btn.clicked.connect(self.exit_program)
 
         # horizontal button layout
@@ -242,18 +249,18 @@ class MainWindow(QMainWindow):
         self.container.setLayout(self.layout)
 
         # help action button
-        help_action = QAction("Help", self)
-        help_action.setStatusTip("&Help")
+        help_action = QAction(language["helpAction"], self)
+        help_action.setStatusTip(f"&{language["helpAction"]}")
         help_action.triggered.connect(self.onHelpActionBtnClick)
 
         # info action button
-        info_action = QAction("About", self)
-        info_action.setStatusTip("&About")
+        info_action = QAction(language["infoAction"], self)
+        info_action.setStatusTip(f"&{language["infoAction"]}")
         info_action.triggered.connect(self.onInfoActionBtnClick)
 
         # menu bar
         menu_bar = self.menuBar()
-        help_menu = menu_bar.addMenu("&Help")
+        help_menu = menu_bar.addMenu(f"&{language["helpAction"]}")
         help_menu.addAction(help_action)
         help_menu.addAction(info_action)
 
@@ -269,10 +276,9 @@ class MainWindow(QMainWindow):
         """Generate the password."""
         if self.dropdown_cb.currentText() == self.pass_len_list[0]:
             dlg = MessageDialog(self)
-            dlg.setWindowTitle("Please select a number...")
+            dlg.setWindowTitle(language["messageDialog"]["windowTitle"])
             dlg.message_lbl.setText(
-                "Please select a number to generate a password."
-            )
+                language["messageDialog"]["messageDialogText"])
             dlg.exec()
         else:
             chars = string.ascii_letters + string.digits + string.punctuation
@@ -286,16 +292,16 @@ class MainWindow(QMainWindow):
 
         QMessageBox.information(
             self,
-            "Successfully copied",
-            "Your password has been successfully copied."
+            language["copyDialog"]["windowTitle"],
+            language["copyDialog"]["copyDialogText"]
         )
 
     def exit_program(self):
         """Exit program"""
         btn = QMessageBox.question(
             self,
-            "Exit program",
-            "Do you want to exit program?"
+            language["exitDialog"]["windowTitle"],
+            language["exitDialog"]["exitDialogText"]
         )
 
         if btn == QMessageBox.StandardButton.Yes:
@@ -313,7 +319,7 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setWindowIcon(QIcon(Paths.icon("logo.svg")))
+    app.setWindowIcon(QIcon(Paths.icon("logo.png")))
     app.setStyle("Fusion")
     window = MainWindow()
     window.show()
