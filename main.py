@@ -85,7 +85,7 @@ class HelpDialog(QDialog):
         self.third_step_img.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.third_step_lbl = QLabel(
-            "3. Now click the \"Copy\" button to copy the password into your clipboard."
+            "3. Now click the \"Copy\" button to copy the password\n into your clipboard."
         )
         font = self.third_step_lbl.font()
         font.setPointSize(10)
@@ -124,7 +124,7 @@ class InfoDialog(QDialog):
 
         self.desc_field = QTextEdit()
         self.desc_field.setText(
-            "The KD Password Generator is a simple desktop application to generate a random password between 8 and 20 characters."
+            "The KD Password Generator is a simple desktop application to generate a random password between 8 and 20 characters.\n\nThis application is completely free software."
         )
         self.desc_field.setReadOnly(True)
 
