@@ -128,7 +128,7 @@ class InfoDialog(QDialog):
         self.desc_field.setReadOnly(True)
 
         self.footer_lbl = QLabel(
-            f"Version: {VERSION} | {language["aboutDialog"]["aboutDialogFooter"]}")
+            "Version: " + VERSION + "| " + language["aboutDialog"]["aboutDialogFooter"])
         font = self.footer_lbl.font()
         font.setPointSize(10)
         font.setFamily(FONT_FAMILY)
@@ -174,7 +174,7 @@ class MainWindow(QMainWindow):
 
         # variables
         self.pass_len_list = [
-            f"{language["selectOption"]}",
+            language["selectOption"],
             "8",
             "9",
             "10",
@@ -242,17 +242,17 @@ class MainWindow(QMainWindow):
 
         # help action button
         help_action = QAction(language["helpAction"], self)
-        help_action.setStatusTip(f"&{language["helpAction"]}")
+        help_action.setStatusTip("&" + language["helpAction"])
         help_action.triggered.connect(self.onHelpActionBtnClick)
 
         # info action button
         info_action = QAction(language["infoAction"], self)
-        info_action.setStatusTip(f"&{language["infoAction"]}")
+        info_action.setStatusTip("&" + language["infoAction"])
         info_action.triggered.connect(self.onInfoActionBtnClick)
 
         # menu bar
         menu_bar = self.menuBar()
-        help_menu = menu_bar.addMenu(f"&{language["helpAction"]}")
+        help_menu = menu_bar.addMenu("&" + language["helpAction"])
         help_menu.addAction(help_action)
         help_menu.addAction(info_action)
 
